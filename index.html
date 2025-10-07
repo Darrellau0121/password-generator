@@ -11,60 +11,73 @@
   </head>
   <body>
     <header class="site-header" role="banner">
-      <h1 aria-label="密码生成器标题">密码生成器</h1>
+      <div class="header-content">
+        <h1 aria-label="密码生成器标题" data-i18n="title">Password Generator</h1>
+        <div class="lang-switcher">
+          <select id="lang-select" aria-label="选择语言">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+            <option value="de">Deutsch</option>
+            <option value="ru">Русский</option>
+            <option value="pt">Português</option>
+            <option value="es">Español</option>
+            <option value="vi">Tiếng Việt</option>
+          </select>
+        </div>
+      </div>
     </header>
 
     <main class="container" role="main">
       <section class="panel" aria-labelledby="result-title">
         <div class="result-row">
-          <h2 id="result-title">生成结果</h2>
+          <h2 id="result-title" data-i18n="resultTitle">Generated Result</h2>
           <div class="result-actions">
-            <button id="btn-generate" class="btn primary" aria-label="生成密码">生成</button>
-            <button id="btn-copy" class="btn" aria-label="复制密码">复制</button>
-            <label class="switch" aria-label="切换明文显示">
+            <button id="btn-generate" class="btn primary" data-i18n-aria="generate" data-i18n="generate">Generate</button>
+            <button id="btn-copy" class="btn" data-i18n-aria="copy" data-i18n="copy">Copy</button>
+            <label class="switch" data-i18n-aria="mask">
               <input type="checkbox" id="toggle-mask" checked />
-              <span>掩码</span>
+              <span data-i18n="mask">Mask</span>
             </label>
           </div>
         </div>
         <output id="output" class="output" aria-live="polite" aria-atomic="true">••••••••••••••••</output>
         <div class="meters">
           <div class="meter">
-            <div class="meter-label">熵</div>
+            <div class="meter-label" data-i18n="entropy">Entropy</div>
             <div class="meter-value"><span id="entropy">0</span> bits</div>
           </div>
           <div class="meter">
-            <div class="meter-label">强度</div>
-            <progress id="strength" max="4" value="0" aria-label="密码强度"></progress>
-            <span id="strength-text" class="muted">弱</span>
+            <div class="meter-label" data-i18n="strength">Strength</div>
+            <progress id="strength" max="4" value="0" data-i18n-aria="strength"></progress>
+            <span id="strength-text" class="muted" data-i18n="weak">Weak</span>
           </div>
         </div>
       </section>
 
       <section class="panel" aria-labelledby="config-title">
-        <h2 id="config-title">策略配置</h2>
+        <h2 id="config-title" data-i18n="configTitle">Configuration</h2>
         <form id="form" class="grid" autocomplete="off">
           <div class="field">
-            <label for="length">长度 <span id="length-val" class="mono">16</span></label>
+            <label for="length" data-i18n="length">Length <span id="length-val" class="mono">16</span></label>
             <input type="range" id="length" name="length" min="8" max="128" value="16" />
           </div>
 
           <fieldset class="field">
-            <legend>字符集</legend>
-            <label><input type="checkbox" id="set-upper" checked /> 大写 A–Z</label>
-            <label><input type="checkbox" id="set-lower" checked /> 小写 a–z</label>
-            <label><input type="checkbox" id="set-digit" checked /> 数字 0–9</label>
-            <label><input type="checkbox" id="set-symbol" /> 符号 !@#…</label>
+            <legend data-i18n="charset">Character Set</legend>
+            <label><input type="checkbox" id="set-upper" checked /> <span data-i18n="uppercase">Uppercase A–Z</span></label>
+            <label><input type="checkbox" id="set-lower" checked /> <span data-i18n="lowercase">Lowercase a–z</span></label>
+            <label><input type="checkbox" id="set-digit" checked /> <span data-i18n="digits">Digits 0–9</span></label>
+            <label><input type="checkbox" id="set-symbol" /> <span data-i18n="symbols">Symbols !@#…</span></label>
           </fieldset>
 
           <fieldset class="field">
-            <legend>规则</legend>
-            <label><input type="checkbox" id="exclude-similar" /> 排除相似字符 (0 O 1 l I)</label>
-            <label><input type="checkbox" id="require-classes" /> 必须包含所选类别</label>
+            <legend data-i18n="rules">Rules</legend>
+            <label><input type="checkbox" id="exclude-similar" /> <span data-i18n="excludeSimilar">Exclude similar chars (0 O 1 l I)</span></label>
+            <label><input type="checkbox" id="require-classes" /> <span data-i18n="requireClasses">Must include selected classes</span></label>
             <label>
-              连续重复上限
+              <span data-i18n="maxRepeat">Max consecutive repeats</span>
               <select id="max-repeat">
-                <option value="0">不限制</option>
+                <option value="0" data-i18n="noLimit">No limit</option>
                 <option value="2">≤2</option>
                 <option value="3" selected>≤3</option>
                 <option value="4">≤4</option>
@@ -73,47 +86,48 @@
           </fieldset>
 
           <fieldset class="field">
-            <legend>模板（可选）</legend>
-            <input type="text" id="pattern" placeholder="例如: A9!A9 或留空" inputmode="latin" />
-            <p class="help">占位符：A=字母、a=小写、U=大写、9=数字、#=符号、*=任意</p>
+            <legend data-i18n="template">Template (Optional)</legend>
+            <input type="text" id="pattern" data-i18n-placeholder="templatePlaceholder" inputmode="latin" />
+            <p class="help" data-i18n="templateHelp">Placeholders: A=letter, a=lowercase, U=uppercase, 9=digit, #=symbol, *=any</p>
           </fieldset>
 
           <fieldset class="field">
-            <legend>词语口令（可选）</legend>
+            <legend data-i18n="passphrase">Passphrase (Optional)</legend>
             <label>
-              词数
+              <span data-i18n="wordCount">Word count</span>
               <input type="number" id="words-count" min="2" max="12" value="4" />
             </label>
             <label>
-              分隔符
+              <span data-i18n="separator">Separator</span>
               <input type="text" id="words-sep" value="-" maxlength="3" class="mono" />
             </label>
-            <label><input type="checkbox" id="use-passphrase" /> 使用词语口令模式</label>
+            <label><input type="checkbox" id="use-passphrase" /> <span data-i18n="usePassphrase">Use passphrase mode</span></label>
           </fieldset>
         </form>
       </section>
 
       <section class="panel" aria-labelledby="batch-title">
         <div class="result-row">
-          <h2 id="batch-title">批量与导出</h2>
+          <h2 id="batch-title" data-i18n="batchTitle">Batch & Export</h2>
           <div class="result-actions">
             <label>
-              数量
+              <span data-i18n="count">Count</span>
               <input type="number" id="batch-count" min="1" max="10000" value="10" />
             </label>
-            <button id="btn-batch" class="btn" aria-label="批量生成">批量生成</button>
-            <button id="btn-export-txt" class="btn" aria-label="导出TXT">导出 TXT</button>
-            <button id="btn-export-csv" class="btn" aria-label="导出CSV">导出 CSV</button>
+            <button id="btn-batch" class="btn" data-i18n-aria="batchGenerate" data-i18n="batchGenerate">Batch Generate</button>
+            <button id="btn-export-txt" class="btn" data-i18n-aria="exportTxt" data-i18n="exportTxt">Export TXT</button>
+            <button id="btn-export-csv" class="btn" data-i18n-aria="exportCsv" data-i18n="exportCsv">Export CSV</button>
           </div>
         </div>
-        <textarea id="batch-output" rows="8" class="mono" aria-label="批量结果" placeholder="批量结果会显示在此"></textarea>
+        <textarea id="batch-output" rows="8" class="mono" data-i18n-aria="batchPlaceholder" data-i18n-placeholder="batchPlaceholder"></textarea>
       </section>
     </main>
 
     <footer class="site-footer" role="contentinfo">
-      <p class="copyright">© 2025 Darrel. All rights reserved.</p>
+      <p class="copyright" data-i18n="copyright">© 2025 Darrel. All rights reserved.</p>
     </footer>
 
+    <script src="assets/lang.js"></script>
     <script src="assets/app.js"></script>
   </body>
 </html>

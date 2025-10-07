@@ -102,11 +102,11 @@
 
   function strengthFromEntropy(bits){
     // 简单阈值：<28 极弱，<36 弱，<60 中，<80 强，否则 很强
-    if(bits < 28) return {level:0, label:'极弱'};
-    if(bits < 36) return {level:1, label:'弱'};
-    if(bits < 60) return {level:2, label:'中'};
-    if(bits < 80) return {level:3, label:'强'};
-    return {level:4, label:'很强'};
+    if(bits < 28) return {level:0, label:t('weak')};
+    if(bits < 36) return {level:1, label:t('weak')};
+    if(bits < 60) return {level:2, label:t('medium')};
+    if(bits < 80) return {level:3, label:t('strong')};
+    return {level:4, label:t('veryStrong')};
   }
 
   function applyMask(text, masked){
@@ -269,7 +269,7 @@
     if(!real){ return; }
     try{
       await navigator.clipboard.writeText(real);
-      flash(ui.btnCopy, '已复制');
+      flash(ui.btnCopy, t('copied'));
     }catch{
       // 降级：选中输出区域
       selectText(ui.output);
@@ -340,6 +340,13 @@
     ui.btnBatch.addEventListener('click', (e)=>{ e.preventDefault(); batchGenerate(); });
     ui.btnExportTxt.addEventListener('click', (e)=>{ e.preventDefault(); onExportTXT(); });
     ui.btnExportCsv.addEventListener('click', (e)=>{ e.preventDefault(); onExportCSV(); });
+    
+    // 语言切换
+    const langSelect = document.getElementById('lang-select');
+    if(langSelect){
+      langSelect.addEventListener('change', (e)=>{ switchLanguage(e.target.value); });
+    }
+    
     // 即时更新强度预览
     ['change','input'].forEach(evt=>{
       document.getElementById('form').addEventListener(evt, ()=>{
@@ -349,6 +356,7 @@
   }
 
   // 初始
+  initLanguage();
   bind();
   const initial = generateOnce();
   window.__lastRealPwd = initial;
