@@ -35,6 +35,7 @@ progress::-webkit-progress-bar{background:#0d141d;border:1px solid var(--border)
 progress::-webkit-progress-value{background:linear-gradient(90deg,var(--bad),var(--warn),var(--ok));border-radius:6px}
 
 .site-footer{padding:16px 20px;text-align:center;color:var(--muted)}
+.copyright{margin:8px 0 0 0;font-size:14px;color:var(--muted)}
 
 @media (max-width:640px){
   .result-row{flex-direction:column;align-items:flex-start}
