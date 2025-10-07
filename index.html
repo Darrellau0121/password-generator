@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>密码生成器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <h1 aria-label="密码生成器标题">密码生成器</h1>
+      <p class="subtitle">基于系统级加密随机源 · 本地生成 · 无上传</p>
+    </header>
+
+    <main class="container" role="main">
+      <section class="panel" aria-labelledby="result-title">
+        <div class="result-row">
+          <h2 id="result-title">生成结果</h2>
+          <div class="result-actions">
+            <button id="btn-generate" class="btn primary" aria-label="生成密码">生成</button>
+            <button id="btn-copy" class="btn" aria-label="复制密码">复制</button>
+            <label class="switch" aria-label="切换明文显示">
+              <input type="checkbox" id="toggle-mask" checked />
+              <span>掩码</span>
+            </label>
+          </div>
+        </div>
+        <output id="output" class="output" aria-live="polite" aria-atomic="true">••••••••••••••••</output>
+        <div class="meters">
+          <div class="meter">
+            <div class="meter-label">熵</div>
+            <div class="meter-value"><span id="entropy">0</span> bits</div>
+          </div>
+          <div class="meter">
+            <div class="meter-label">强度</div>
+            <progress id="strength" max="4" value="0" aria-label="密码强度"></progress>
+            <span id="strength-text" class="muted">弱</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="config-title">
+        <h2 id="config-title">策略配置</h2>
+        <form id="form" class="grid" autocomplete="off">
+          <div class="field">
+            <label for="length">长度 <span id="length-val" class="mono">16</span></label>
+            <input type="range" id="length" name="length" min="8" max="128" value="16" />
+          </div>
+
+          <fieldset class="field">
+            <legend>字符集</legend>
+            <label><input type="checkbox" id="set-upper" checked /> 大写 A–Z</label>
+            <label><input type="checkbox" id="set-lower" checked /> 小写 a–z</label>
+            <label><input type="checkbox" id="set-digit" checked /> 数字 0–9</label>
+            <label><input type="checkbox" id="set-symbol" /> 符号 !@#…</label>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>规则</legend>
+            <label><input type="checkbox" id="exclude-similar" /> 排除相似字符 (0 O 1 l I)</label>
+            <label><input type="checkbox" id="require-classes" /> 必须包含所选类别</label>
+            <label>
+              连续重复上限
+              <select id="max-repeat">
+                <option value="0">不限制</option>
+                <option value="2">≤2</option>
+                <option value="3" selected>≤3</option>
+                <option value="4">≤4</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>模板（可选）</legend>
+            <input type="text" id="pattern" placeholder="例如: A9!A9 或留空" inputmode="latin" />
+            <p class="help">占位符：A=字母、a=小写、U=大写、9=数字、#=符号、*=任意</p>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>词语口令（可选）</legend>
+            <label>
+              词数
+              <input type="number" id="words-count" min="2" max="12" value="4" />
+            </label>
+            <label>
+              分隔符
+              <input type="text" id="words-sep" value="-" maxlength="3" class="mono" />
+            </label>
+            <label><input type="checkbox" id="use-passphrase" /> 使用词语口令模式</label>
+          </fieldset>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="batch-title">
+        <div class="result-row">
+          <h2 id="batch-title">批量与导出</h2>
+          <div class="result-actions">
+            <label>
+              数量
+              <input type="number" id="batch-count" min="1" max="10000" value="10" />
+            </label>
+            <button id="btn-batch" class="btn" aria-label="批量生成">批量生成</button>
+            <button id="btn-export-txt" class="btn" aria-label="导出TXT">导出 TXT</button>
+            <button id="btn-export-csv" class="btn" aria-label="导出CSV">导出 CSV</button>
+          </div>
+        </div>
+        <textarea id="batch-output" rows="8" class="mono" aria-label="批量结果" placeholder="批量结果会显示在此"></textarea>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <span class="muted">本地生成 · 使用系统级 CSPRNG · 拒绝采样避免模偏</span>
+    </footer>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
