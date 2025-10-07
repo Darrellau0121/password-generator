@@ -314,6 +314,21 @@ function switchLanguage(lang) {
 
 // 更新界面文本
 function updateUI() {
+  // 更新页面标题
+  document.title = t('title');
+  
+  // 更新 HTML lang 属性
+  const langMap = {
+    'en': 'en',
+    'zh': 'zh-CN', 
+    'de': 'de',
+    'ru': 'ru',
+    'pt': 'pt',
+    'es': 'es',
+    'vi': 'vi'
+  };
+  document.documentElement.lang = langMap[currentLang] || 'en';
+  
   // 更新所有带有 data-i18n 属性的元素
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
