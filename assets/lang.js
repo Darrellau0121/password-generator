@@ -39,7 +39,8 @@ const LANGUAGES = {
     exportCsv: 'Export CSV',
     batchPlaceholder: 'Batch results will appear here',
     copied: 'Copied',
-    copyright: '© 2025 Darrel. All rights reserved.'
+    copyright: '© 2025 Darrel. All rights reserved.',
+    selectLanguage: 'Select Language'
   },
   zh: {
     title: '密码生成器',
@@ -80,7 +81,8 @@ const LANGUAGES = {
     exportCsv: '导出 CSV',
     batchPlaceholder: '批量结果会显示在此',
     copied: '已复制',
-    copyright: '© 2025 Darrel. 版权所有。'
+    copyright: '© 2025 Darrel. 版权所有。',
+    selectLanguage: '选择语言'
   },
   de: {
     title: 'Passwort-Generator',
@@ -121,7 +123,8 @@ const LANGUAGES = {
     exportCsv: 'CSV exportieren',
     batchPlaceholder: 'Batch-Ergebnisse werden hier angezeigt',
     copied: 'Kopiert',
-    copyright: '© 2025 Darrel. Alle Rechte vorbehalten.'
+    copyright: '© 2025 Darrel. Alle Rechte vorbehalten.',
+    selectLanguage: 'Sprache wählen'
   },
   ru: {
     title: 'Генератор паролей',
@@ -162,7 +165,8 @@ const LANGUAGES = {
     exportCsv: 'Экспорт CSV',
     batchPlaceholder: 'Результаты пакетной обработки появятся здесь',
     copied: 'Скопировано',
-    copyright: '© 2025 Darrel. Все права защищены.'
+    copyright: '© 2025 Darrel. Все права защищены.',
+    selectLanguage: 'Выбрать язык'
   },
   pt: {
     title: 'Gerador de Senhas',
@@ -203,7 +207,8 @@ const LANGUAGES = {
     exportCsv: 'Exportar CSV',
     batchPlaceholder: 'Resultados em lote aparecerão aqui',
     copied: 'Copiado',
-    copyright: '© 2025 Darrel. Todos os direitos reservados.'
+    copyright: '© 2025 Darrel. Todos os direitos reservados.',
+    selectLanguage: 'Selecionar idioma'
   },
   es: {
     title: 'Generador de Contraseñas',
@@ -244,7 +249,8 @@ const LANGUAGES = {
     exportCsv: 'Exportar CSV',
     batchPlaceholder: 'Los resultados en lote aparecerán aquí',
     copied: 'Copiado',
-    copyright: '© 2025 Darrel. Todos los derechos reservados.'
+    copyright: '© 2025 Darrel. Todos los derechos reservados.',
+    selectLanguage: 'Seleccionar idioma'
   },
   vi: {
     title: 'Trình Tạo Mật Khẩu',
@@ -285,7 +291,8 @@ const LANGUAGES = {
     exportCsv: 'Xuất CSV',
     batchPlaceholder: 'Kết quả hàng loạt sẽ hiển thị ở đây',
     copied: 'Đã sao chép',
-    copyright: '© 2025 Darrel. Tất cả quyền được bảo lưu.'
+    copyright: '© 2025 Darrel. Tất cả quyền được bảo lưu.',
+    selectLanguage: 'Chọn ngôn ngữ'
   }
 };
 
